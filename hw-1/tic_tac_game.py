@@ -1,6 +1,6 @@
 '''Модуль реализующий игру крестики-нолики'''
 from string import ascii_uppercase
-import argparse
+from argparse import ArgumentParser
 
 
 class TicTacGame:
@@ -25,21 +25,19 @@ class TicTacGame:
         indent = ' ' * 3  # Отступ для размещения двузначного индекса и пробела слева
         delimiter = ' '
         print(indent + delimiter +
-            delimiter.join(str(val).center(self.width) for val in ascii_uppercase[:self.size]) +
+            delimiter.join(val.center(self.width) for val in ascii_uppercase[:self.size]) +
             delimiter)
         delimiter = '|'
-        for i in range(self.size):
+        for row_number in range(self.size):
             print(indent + ('+' + '-'*self.width)*self.size + '+')
-            print(str(i).rjust(2, ' ') + ' ' + delimiter +
-                delimiter.join(str(val).center(self.width) for val in self.board[i]) +
+            print(str(row_number).rjust(2, ' ') + ' ' + delimiter +
+                delimiter.join(str(val).center(self.width) for val in self.board[row_number]) +
                 delimiter)
         print(indent + ('+' + '-'*self.width)*self.size + '+')
 
-    def take_move(self, sign):
-        '''Функция принимает ход игрока'''
-        coord_str = input(f"Ходит {self.PLAYER_NAME[sign]}. Введите координату клетки: ")
-        coord = self.validate_input(coord_str)
-        self.board[coord[0]][coord[1]] = sign
+    def make_move(self, row, col, sign):
+        '''Функция ставит символ в игровую клетку'''
+        self.board[row][col] = sign
 
     def validate_input(self, coord: str):
         '''Функция валидирует введенную координату'''
@@ -98,15 +96,18 @@ class TicTacGame:
 
     def start_game(self):
         '''Функция реализующая игровой цикл'''
-        game_over = False
         moves_left = self.size ** 2
         current_player = 'x'
+        winner = None
 
         self.show_board()
-        while not game_over:
+        while moves_left and not winner:
             while True:
+                coord_str = input(f"Ходит {self.PLAYER_NAME[current_player]}. " \
+                    "Введите координату клетки: ")
                 try:
-                    self.take_move(current_player)
+                    coord = self.validate_input(coord_str)
+                    self.make_move(coord[0], coord[1], current_player)
                     break
                 except ValueError as ex:
                     print(ex)
@@ -115,12 +116,10 @@ class TicTacGame:
 
             winner = self.check_winner()
             if winner:
-                game_over = True
                 print(f"Победил {self.PLAYER_NAME[winner]}!")
 
             moves_left -= 1
             if not moves_left:
-                game_over = True
                 print('Ничья!')
 
             current_player = 'o' if current_player == 'x' else 'x'
@@ -128,7 +127,7 @@ class TicTacGame:
 
 if __name__ == '__main__':
     try:
-        parser = argparse.ArgumentParser()
+        parser = ArgumentParser()
         parser.add_argument('-s', '--size', type=int, default=3, help='Размерность игрового поля')
         parser.add_argument('-w', '--width', type=int, default=3, help='Ширина столбцов')
         args = parser.parse_args()

@@ -88,14 +88,13 @@ class TestTicTacGame(unittest.TestCase):
             [' ', ' ', ' '],
             [' ', ' ', ' '],
         ]
-        self.assertEqual(self.game.check_winner(), None)
-
+        self.assertIsNone(self.game.check_winner())
         self.game.board = [
             [' ', ' ', ' '],
             ['o', 'x', 'o'],
             ['x', ' ', 'x'],
         ]
-        self.assertEqual(self.game.check_winner(), None)
+        self.assertIsNone(self.game.check_winner())
 
     def test_get_win_row_sign(self):
         '''Тестирование функции ищущей символ, которым заполнена какая-либо строка'''
