@@ -36,9 +36,15 @@ messenger
 В случае, если клиент запросил другой метод, нужно возвращать код ответа, обозначающий что метод не разрешен
 
 #
-## Реализованные заглушки
- - localhost:8000/
- - localhost:8000/chats/
- - localhost:8000/chats/<int:chat_id>
- - localhost:8000/chats/create
- 
+### Реализованные заглушки:
+```
+ - localhost:8000/                       - Возвращает начальную страницу приложения
+ - localhost:8000/chats/                 - Возвращает список чатов
+ - localhost:8000/chats/<int:chat_id>    - Возвращает страницу чата
+ - localhost:8000/chats/create/          - Создание чата (POST)
+ ```
+
+### Пример создания чата через curl:
+```
+curl -X POST -d "title=Aurora" -v localhost:8000/chats/create/
+```
