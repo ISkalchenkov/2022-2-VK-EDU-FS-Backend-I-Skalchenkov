@@ -44,7 +44,10 @@ messenger
  - localhost:8000/chats/create/          - Создание чата (POST)
  ```
 
-### Пример создания чата через curl:
+### Примеры запросов через curl:
 ```
+curl -v localhost:8000/
+curl -v localhost:8000/chats/
+curl -v localhost:8000/chats/3/
 curl -X POST -d "title=Aurora" -v localhost:8000/chats/create/
 ```
