@@ -49,5 +49,5 @@ messenger
 curl -v localhost:8000/
 curl -v localhost:8000/chats/
 curl -v localhost:8000/chats/3/
-curl -X POST -d "title=Aurora" -v localhost:8000/chats/create/
+curl -X POST -d "title=BMSTU 5th course" -d "creator=Ivan" -d "chat_type=group" -v localhost:8000/chats/create/
 ```
