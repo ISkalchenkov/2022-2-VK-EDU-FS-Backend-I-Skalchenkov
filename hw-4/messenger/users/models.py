@@ -1,15 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# class User(models.Model):
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     nickname = models.CharField(max_length=32, unique=True)
-#     email = models.CharField(max_length=256, unique=True)
-#     password = models.CharField(max_length=50)
-#     registered_at = models.DateTimeField(auto_now_add=True)
-#     bio = models.CharField(max_length=70, blank=True)
-
 
 class User(AbstractUser):
     bio = models.CharField(max_length=70, blank=True, verbose_name='Биография')
