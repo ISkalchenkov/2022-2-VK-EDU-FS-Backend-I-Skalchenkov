@@ -62,6 +62,6 @@ curl -X POST -d '{"member": "1", "chat": 19, "privilege": 1}' -H "Content-Type: 
 
 curl -X DELETE -v localhost:8000/chats/members/delete/2/19/
 
-
+curl -v localhost:8000/users/1/
 
 ```
