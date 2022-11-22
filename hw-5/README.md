@@ -28,3 +28,29 @@
 
 - не называйте поля-связи author_id -> нужно author
 - называйте поля ManyToMany во множественном числе
+
+
+### Примеры запросов через curl:
+```
+curl -v localhost:8000/
+
+curl -v localhost:8000/chats/
+
+curl -v localhost:8000/chats/13/
+
+curl -X POST -d '{"title": "VK_Edu", "description": "Education", "chat_type": 2, "creator": 1}' -H "Content-Type: application/json" -v localhost:8000/chats/create/
+
+curl -X DELETE -v localhost:8000/chats/delete/20/
+
+curl -X PATCH -d '{"title": "Bmstu communication", "description": "Hello"}' -H "Content-Type: application/json" -v localhost:8000/chats/edit/19/
+
+curl -v localhost:8000/chats/19/messages/
+
+curl -X POST -d '{"body": "Hello", "sender": 1, "chat": 19}' -H "Content-Type: application/json" -v localhost:8000/chats/messages/create/
+
+curl -v localhost:8000/chats/messages/3/
+
+curl -X PATCH -d '{"body": "How are you?"}' -H "Content-Type: application/json" -v localhost:8000/chats/messages/edit/3/
+
+curl -X DELETE -v localhost:8000/chats/messages/delete/3/
+```

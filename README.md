@@ -3,3 +3,4 @@
 - [*hw-2*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-2) *Основы HTTP*
 - [*hw-3*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-3) *Django-проект*
 - [*hw-4*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-4) *Проектирование БД проекта*
+- [*hw-5*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-5) *Админка и работа с ORM*
