@@ -5,3 +5,4 @@
 - [*hw-4*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-4) *Проектирование БД проекта*
 - [*hw-5*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-5) *Админка и работа с ORM*
 - [*hw-6*](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-6) *Недостающие модели и вьюхи*
+- [*hw-7](https://github.com/ISkalchenkov/2022-2-VK-EDU-FS-Backend-I-Skalchenkov/tree/master/hw-7)  *DRF*
