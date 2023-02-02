@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Subquery
+from django.http import JsonResponse
 from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, \
     UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
@@ -10,10 +11,9 @@ from chats.models import Chat, Message, ChatMember
 from chats.serializers import ChatSerializer, MessageSerializer, MemberSerializer, \
     ChatUpdateSerializer, MessageUpdateSerializer
 from users.models import User
-
+from django.contrib.auth.decorators import login_required
 
 class ChatListCreate(ListCreateAPIView):
-
     serializer_class = ChatSerializer
     queryset = Chat.objects.all()
 
@@ -39,7 +39,7 @@ class MessageList(ListCreateAPIView):
     def get_queryset(self):
         chat_id = self.kwargs['chat_id']
         chat = get_object_or_404(Chat, id=chat_id)
-        return chat.chat_messages.all().order_by('id')
+        return chat.chat_messages.all()
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -101,7 +101,16 @@ class MemberDelete(DestroyAPIView):
         member_id = self.kwargs['member_id']
         return get_object_or_404(ChatMember, chat=chat_id, member=member_id)
  
+def home(request):
+    return redirect('http://localhost:3000/')
 
-@require_http_methods(['GET'])
-def homepage(request):
-    return render(request, 'index.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+
+def is_logged_in(request):
+    user = request.user
+    if user.is_authenticated:
+        return JsonResponse({'logged_in': True})
+    return JsonResponse({'logged_in': False})

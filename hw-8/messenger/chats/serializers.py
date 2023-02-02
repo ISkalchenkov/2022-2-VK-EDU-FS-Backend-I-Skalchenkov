@@ -43,4 +43,4 @@ class MessageUpdateSerializer(serializers.ModelSerializer):
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatMember
-        fields = ['id', 'member', 'chat', 'joined_at', 'privilege']
+        fields = ['member', 'chat', 'joined_at', 'privilege']
